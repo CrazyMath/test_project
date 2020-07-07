@@ -2,8 +2,10 @@ from model_utils import Choices
 from django.contrib.auth.models import User
 from django.db import models
 
+from wingtel.contrib.mixins import DateTimeStampedModel
 
-class Purchase(models.Model):
+
+class Purchase(DateTimeStampedModel):
     """Represents a purchase for a user and their subscription(s)"""
     STATUS = Choices(
         ('pending', 'Pending'),
@@ -22,6 +24,3 @@ class Purchase(models.Model):
     status = models.CharField(max_length=20, choices=STATUS, default=STATUS.pending)
     amount = models.DecimalField(max_digits=8, decimal_places=2)
     payment_date = models.DateTimeField(null=True, db_index=True)
-
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)

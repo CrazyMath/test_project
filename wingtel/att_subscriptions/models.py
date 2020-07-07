@@ -4,10 +4,11 @@ from django.contrib.auth.models import User
 from django.db import models
 from model_utils import Choices
 
+from wingtel.contrib.mixins import DateTimeStampedModel
 from wingtel.plans.models import Plan
 
 
-class ATTSubscription(models.Model):
+class ATTSubscription(DateTimeStampedModel):
     ONE_KILOBYTE_PRICE = Decimal('0.001')
     ONE_SECOND_PRICE = Decimal('0.001')
 
@@ -29,9 +30,6 @@ class ATTSubscription(models.Model):
     network_type = models.CharField(max_length=5, blank=True, default='')
 
     effective_date = models.DateTimeField(null=True)
-
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
 
     deleted = models.BooleanField(default=False)
 

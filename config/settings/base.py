@@ -14,7 +14,7 @@ import os
 import environ
 
 ROOT_DIR = (
-    environ.Path(__file__) - 3
+        environ.Path(__file__) - 3
 )  # (wingtel/config/settings/base.py - 3 = wingtel/)
 APPS_DIR = ROOT_DIR.path("wingtel")
 
@@ -39,23 +39,29 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
 # Application definition
-
-INSTALLED_APPS = [
+DJANGO_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+]
+THIRD_PARTY_APPS = [
     'rest_framework',
+]
+
+LOCAL_APPS = [
+    'wingtel.contrib.apps.ContribConfig',
     'wingtel.att_subscriptions.apps.AttSubscriptionsConfig',
     'wingtel.plans.apps.PlansConfig',
     'wingtel.purchases.apps.PurchasesConfig',
     'wingtel.sprint_subscriptions.apps.SprintSubscriptionsConfig',
-    'wingtel.usage.apps.UsageConfig'
+    'wingtel.usage.apps.UsageConfig',
 ]
+# https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
+INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -87,7 +93,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'config.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
@@ -102,7 +107,6 @@ DATABASES = {
         'CONN_MAX_AGE': 3600,
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
@@ -122,7 +126,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
 
@@ -135,7 +138,6 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/

@@ -18,7 +18,8 @@ class UsageMetrics(views.APIView):
         to_date: `ISO 8601` style dates (eg '2013-01-29')
         metric_type: voice or data
     """
-
+    # TODO: Setup correct permission as usually not all users allowed to access API data.
+    # permission_classes = (IsAdminUser, )
     serializer_class = UsageMetricSerializer
 
     def get_serializer_class(self):

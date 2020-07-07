@@ -5,10 +5,11 @@ from django.db import models
 
 from model_utils import Choices
 
+from wingtel.contrib.mixins import DateTimeStampedModel
 from wingtel.plans.models import Plan
 
 
-class SprintSubscription(models.Model):
+class SprintSubscription(DateTimeStampedModel):
     """Represents a subscription with Sprint for a user and a single device"""
     STATUS = Choices(
         ('new', 'New'),
@@ -32,8 +33,5 @@ class SprintSubscription(models.Model):
     sprint_id = models.CharField(max_length=16, null=True)
 
     effective_date = models.DateTimeField(null=True)
-
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
 
     deleted = models.BooleanField(default=False)

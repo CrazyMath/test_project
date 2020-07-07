@@ -30,3 +30,26 @@ Create an API that fetches data usage metrics and voice usage metrics by subscri
 
 1. Improve and optimize the existing code where you see fit.
 2. Write tests!
+
+
+### DEVELOPER NOTES
+
+
+To run project with docker for local development(supposed that you have installed docker and docker-compose):
+
+`docker-compose -f local.yml build`
+
+`docker-compose -f local.yml up`
+
+
+With console next command can be run:
+
+`docker-compose -f local.yml run --rm django python manage.py test --settings=config.settings.test` - to run tests
+
+`docker-compose -f local.yml run --rm django python manage.py createsuperuser` - create superuser
+
+`docker-compose -f local.yml run --rm django python manage.py makemigrations` - to makemigrations
+
+`docker-compose -f local.yml run --rm django python manage.py migrate` - to apply migrations
+
+`docker-compose -f local.yml run --rm django python manage.py shell` - to run shell

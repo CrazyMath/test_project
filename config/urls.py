@@ -35,7 +35,7 @@ router.register(r'sprint_subscriptions', SprintSubscriptionViewSet)
 urlpatterns = [
     path('admin/', admin.site.urls),
     url(r'^api/', include((router.urls, 'api'), namespace='api')),
-    url(r'^api/', include('wingtel.usage.urls'), name='usage'),
+    path(r'api/', include(('wingtel.usage.urls', 'wingtel.usage'), namespace='usage')),
 ]
 
 if settings.DEBUG:

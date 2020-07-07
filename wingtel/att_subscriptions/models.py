@@ -18,7 +18,7 @@ class ATTSubscription(models.Model):
         ('expired', 'Expired'),
     )
 
-    user = models.ForeignKey(User, on_delete=models.PROTECT) # Owning user
+    user = models.ForeignKey(User, on_delete=models.PROTECT)  # Owning user
 
     plan = models.ForeignKey(Plan, null=True, on_delete=models.PROTECT)
     status = models.CharField(max_length=10, choices=STATUS, default=STATUS.new)
@@ -34,3 +34,6 @@ class ATTSubscription(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     deleted = models.BooleanField(default=False)
+
+    def __str__(self):
+        return f'{self.user}|{self.plan}|{self.get_status_display()}'

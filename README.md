@@ -41,6 +41,9 @@ To run project with docker for local development(supposed that you have installe
 
 `docker-compose -f local.yml up`
 
+To populate db with test data run command:
+
+`docker-compose -f local.yml run --rm django python manage.py filldb`
 
 With console next command can be run:
 
